@@ -1,0 +1,77 @@
+-- Table structure for objects
+  CREATE TABLE IF NOT EXISTS objects (
+    id int(11) NOT NULL,
+    `name` varchar(200) NOT NULL,
+    `owner` varchar(200) NOT NULL,
+	companyType varchar(200) NOT NULL,
+    transactionType varchar(200) NOT NULL,
+    objectType varchar(200) NOT NULL,
+    objectLocation varchar(200) NOT NULL,
+    objectArea DECIMAL NOT NULL,
+    objectPrice DECIMAL NOT NULL,
+    created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  ALTER TABLE objects ADD PRIMARY KEY (id);
+  ALTER TABLE objects MODIFY id int(11) NOT NULL AUTO_INCREMENT;
+
+  INSERT INTO objects (id, name, owner, companyType, transactionType, objectType, objectLocation, objectArea, objectPrice, created_at) VALUES 
+  (1, 'Title placeholder', 3, 'Company placeholder', 'sprzedaż', 'dom', 'Warszawa', 250, 1750000, '2019-02-28 13:20:20'),
+  (2, 'Title placeholder', 4, 'Company placeholder', 'wynajem', 'biuro', 'Warszawa', 450, 30000, '2019-02-28 13:20:20'),
+  (3, 'Title placeholder', 5, 'Company placeholder', 'wynajem', 'lokal usługowy', 'Warszawa', 150, 9000, '2019-02-28 13:20:20');
+
+-- Table structure for objects-searched
+  CREATE TABLE IF NOT EXISTS `objects-searched` (
+    id int(11) NOT NULL,
+    `name` varchar(200) NOT NULL,
+    `owner` varchar(200) NOT NULL,
+    companyType varchar(200) NOT NULL,
+    transactionType varchar(200) NOT NULL,
+    objectType varchar(200) NOT NULL,
+    objectLocation varchar(200) NOT NULL,
+    objectAreaMin DECIMAL NOT NULL,
+    objectAreaMax DECIMAL NOT NULL,
+    objectPriceMin DECIMAL NOT NULL,
+    objectPriceMax DECIMAL NOT NULL,
+    created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  ALTER TABLE `objects-searched` ADD PRIMARY KEY (id);
+  ALTER TABLE `objects-searched` MODIFY id int(11) NOT NULL AUTO_INCREMENT;
+
+  INSERT INTO `objects-searched` (id, name, owner, companyType, transactionType, objectType, objectLocation, objectAreaMin, objectAreaMax, objectPriceMin, objectPriceMax, created_at) VALUES 
+  (1, 'Title placeholder', 1, 'Company placeholder', 'sprzedaż', 'dom', 'Warszawa', 200, 300, 1500000, 2000000, '2019-02-28 13:20:20'),
+  (2, 'Title placeholder', 2, 'Kancelaria prawnicza', 'wynajem', 'biuro', 'Warszawa', 400, 500, 25000, 35000, '2019-02-28 13:20:20'),
+  (3, 'Title placeholder', 1, 'Salon fryzjerski', 'wynajem', 'lokal usługowy', 'Warszawa', 100, 200, 5000, 10000, '2019-02-28 13:20:20');
+
+  -- Table structure for users
+  CREATE TABLE IF NOT EXISTS users (
+    id int(11) NOT NULL,
+    `name` varchar(200) NOT NULL,
+    role varchar(200) NOT NULL,
+    email varchar(200) NOT NULL,
+    created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  ALTER TABLE users ADD PRIMARY KEY (id);
+  ALTER TABLE users MODIFY id int(11) NOT NULL AUTO_INCREMENT;
+
+  INSERT INTO users (id, name, role, email, created_at) VALUES
+  (1, 'Test', 'admin', 'test@g.co', '2019-02-28 13:20:20'),
+  (2, 'john', 'user', 'john@g.co', '2019-02-28 13:20:20'),
+  (3, 'tutsmake', 'user', 'tuts@g.co', '2019-02-28 13:20:20'),
+  (4, 'tut', 'user', 'tut@g.co', '2019-02-28 13:20:20'),
+  (5, 'mhd', 'user', 'mhd@g.co', '2019-02-28 13:20:20');
+
+  -- Table structure for posts
+  CREATE TABLE IF NOT EXISTS posts (
+    id int(11) NOT NULL,
+    title varchar(200) NOT NULL,
+    content text NOT NULL,
+    author varchar(200) NOT NULL,
+    created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    modified_at datetime NOT NULL 
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  ALTER TABLE posts ADD PRIMARY KEY (id);
+  ALTER TABLE posts MODIFY id int(11) NOT NULL AUTO_INCREMENT;
+
+  INSERT INTO posts (id, title, content, author, created_at) VALUES
+  (1, 'Lorem ipsum dolor sit', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vestibulum quam augue, eu cursus metus pulvinar eget. Phasellus justo nisi, bibendum at tempus id, facilisis vitae urna. Vestibulum rhoncus ultricies pellentesque. Etiam semper, leo quis venenatis aliquam, ex ligula aliquam ligula, luctus facilisis ante erat porta purus. Duis non viverra nulla. Etiam leo quam, scelerisque vitae quam sit amet, placerat tempus purus. Aliquam venenatis massa non vulputate sollicitudin. Nulla vulputate eget justo ultrices auctor. Cras a vehicula dolor. Donec quis sem id elit pharetra posuere. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque nec ornare arcu, vitae pretium mauris. Mauris efficitur, lorem quis ultricies iaculis, ex libero convallis diam, a porta sapien tellus at elit. Nullam lacinia et augue sit amet malesuada. Sed cursus, tellus vitae feugiat suscipit, risus neque facilisis velit, vitae pellentesque neque ex in massa. Etiam non enim nisl.', 1, '2019-07-12 12:00:20'),
+  (2, 'Inny wpis', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vestibulum quam augue, eu cursus metus pulvinar eget. Phasellus justo nisi, bibendum at tempus id, facilisis vitae urna. Vestibulum rhoncus ultricies pellentesque. Etiam semper, leo quis venenatis aliquam, ex ligula aliquam ligula, luctus facilisis ante erat porta purus. Duis non viverra nulla. Etiam leo quam, scelerisque vitae quam sit amet, placerat tempus purus. Aliquam venenatis massa non vulputate sollicitudin. Nulla vulputate eget justo ultrices auctor. Cras a vehicula dolor. Donec quis sem id elit pharetra posuere. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque nec ornare arcu, vitae pretium mauris. Mauris efficitur, lorem quis ultricies iaculis, ex libero convallis diam, a porta sapien tellus at elit. Nullam lacinia et augue sit amet malesuada. Sed cursus, tellus vitae feugiat suscipit, risus neque facilisis velit, vitae pellentesque neque ex in massa. Etiam non enim nisl.', 2, '2019-07-11 08:00:20');
