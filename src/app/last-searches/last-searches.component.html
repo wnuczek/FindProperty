@@ -1,0 +1,25 @@
+
+<h3 class="">Ostatnio dodane poszukiwania:</h3>
+
+<ul *ngIf="lastSearched" class="row content__part">
+	<li *ngFor="let objectSearched of lastSearched | slice:0:6" class="col-md-6">
+
+		<section class="row link" routerLink="/oferta/{{objectSearched.id}}">
+			<aside class="col-sm-3" >
+				<i class="fas fa-search-location"></i>
+			</aside>
+			<main class="col-sm-9">
+				<p class="title">
+					<strong>{{objectSearched.companyType}} poszukuje</strong>
+				</p>
+				<p class="details">
+					Typ obiektu: {{objectSearched.objectType}}<br>
+					Lokalizacja: {{objectSearched.objectLocation}}<br>
+					Powierzchnia: {{objectSearched.objectAreaMin}} - {{objectSearched.objectAreaMax}} m<sup>2</sup><br>
+					Cena: {{objectSearched.objectPriceMin}} - {{objectSearched.objectPriceMax}} zł<br>
+				</p>
+			</main>
+		</section>
+	</li>
+</ul>
+<button type="button" class="btn btn-outline-dark" routerLink="poszukiwania"><i class="fas fa-more"></i>Zobacz więcej</button>

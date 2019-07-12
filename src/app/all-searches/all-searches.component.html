@@ -1,0 +1,25 @@
+<h3>Wszystkie poszukiwania:</h3>
+
+<ul *ngIf="lastSearched" class="row">
+	<li *ngFor="let objectSearched of lastSearched | paginate: { itemsPerPage: 6, currentPage: p }" class="col-md-6">
+
+		<section class="row">
+			<aside class="col-sm-3">
+				<i class="fas fa-search-location"></i>
+			</aside>
+			<main class="col-sm-9">
+				<p class="title">
+					<strong>{{objectSearched.companyType}} poszukuje</strong>
+				</p>
+				<p class="details">
+					Typ obiektu: {{objectSearched.objectType}}<br>
+					Lokalizacja: {{objectSearched.objectLocation}}<br>
+					Powierzchnia: {{objectSearched.objectAreaMin}} - {{objectSearched.objectAreaMax}} m<sup>2</sup><br>
+					Cena: {{objectSearched.objectPriceMin}} - {{objectSearched.objectPriceMax}} zł<br>
+				</p>
+			</main>
+		</section>
+	</li>
+</ul>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
