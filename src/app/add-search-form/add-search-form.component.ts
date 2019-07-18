@@ -54,20 +54,17 @@ export class AddSearchFormComponent implements OnInit {
 		for (var key in element) {
 			switch (key) {
 			  case 'transactionType':
-			    if (filters.transactionType.sprzedaz !== '' || filters.transactionType.wynajem !== ''){
-			      if (filters.transactionType.sprzedaz == true && filters.transactionType.wynajem == false){
+			    if (filters.transactionType !== '' ){
+			      if (filters.transactionType == 'sprzedaz'){
 			    	if(element[key] !== 'sprzedaz') { 
 			    		matched = false;
 				    	console.log('transactionType not matched');			    	
 			    	}
-			      }	else if (filters.transactionType.sprzedaz == false && filters.transactionType.wynajem == true){
+			      }	else if (filters.transactionType == 'wynajem'){
 			    	if(element[key] !== 'wynajem') { 
 			    		matched = false;
 				    	console.log('transactionType not matched');			    	
 			    	}
-			      }	else if (filters.transactionType.sprzedaz == true && filters.transactionType.wynajem == true){
-			    		matched = true;
-				    	console.log('all transactionTypes matched');	
 			      }
 			    }			   
 			    break;

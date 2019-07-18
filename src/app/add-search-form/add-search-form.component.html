@@ -1,17 +1,17 @@
 <section class="content row">
   <div class="content__part col-sm-7">
     <h3 class="col-sm-12">Wypełnij poniższe parametry poszukiwania:</h3>
-    
+
     <form class="form" [formGroup]="addObjectSearchedForm" (ngSubmit)="onSubmit()" (change)="this.matchedObjectsOffered=this.updateObjectsList(this.objectsOffered)">
 
-        <div formGroupName="transactionType" class="col-sm-12 row form__part">
+        <div class="col-sm-12 row form__part">
           <label class="col-sm-12 bold">Rodzaj transakcji:</label>
         <div class="col-sm-12 row">
           <label class="col-sm-12 col-md-6">
-              <input type="checkbox" formControlName="sprzedaz" name="sprzedaz" value="sprzedaz">Sprzedaż
+              <input type="radio" formControlName="transactionType" name="transactionType" value="sprzedaz">Sprzedaż
           </label>
           <label class="col-sm-12 col-md-6">
-              <input type="checkbox" formControlName="wynajem" name="wynajem" value="wynajem">Wynajem
+              <input type="radio" formControlName="transactionType" name="transactionType" value="wynajem">Wynajem
           </label>
         </div>
         </div>
