@@ -30,7 +30,9 @@
             "styles": [
               "src/styles.sass"
             ],
-            "scripts": []
+            "scripts": [
+              "src/scripts/general.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -90,8 +92,9 @@
             "styles": [
               "src/styles.sass"
             ],
-            "scripts": []
-          }
+            "scripts": [
+              "src/scripts/general.js"
+            ]          }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",

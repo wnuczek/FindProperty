@@ -4,10 +4,9 @@ body
 	padding: 0 !important
 body app-root
 	min-height: 100vh
-	text-align: center
 	display: flex
 	flex-direction: column
-	justify-content: space-between
+	justify-content: flex-start
 ul 
 	list-style: none
 	padding: 0
@@ -19,6 +18,51 @@ app-nav
 .content
 	max-width: 1000px
 	margin: 0 auto
+	min-height: calc(100vh - 112px)
 
 .content__part 
 	padding: 2rem 0
+
+.center 
+	text-align: center
+
+.link 
+	color: inherit
+
+.link:hover 
+	cursor: pointer
+	text-decoration: underline
+	color: inherit
+
+.link--nodecor:hover
+	text-decoration: none 
+
+.paginate
+	display: flex
+	flex-flow: column
+	justify-content: space-between
+
+.ngx-pagination .current
+	background: #343a40 !important
+	font-weight: 800
+	text-decoration: underline
+
+.bold
+	font-weight: 800
+
+.form__part
+	margin-bottom: 1rem
+
+.form__part > .row
+	margin: 0
+
+.form__part > input.col-sm-12 
+	padding: 0 30px
+
+input[type=checkbox], input[type=radio]
+	margin-right: 1rem
+
+input[type=text], input[type=number]
+	border: none
+	box-shadow: none
+	border-bottom: 1px solid #343a40

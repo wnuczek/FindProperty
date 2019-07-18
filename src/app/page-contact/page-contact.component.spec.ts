@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MainPageComponent } from './main-page.component';
+import { PageContactComponent } from './page-contact.component';
 
-describe('MainPageComponent', () => {
-  let component: MainPageComponent;
-  let fixture: ComponentFixture<MainPageComponent>;
+describe('PageContactComponent', () => {
+  let component: PageContactComponent;
+  let fixture: ComponentFixture<PageContactComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MainPageComponent ]
+      declarations: [ PageContactComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MainPageComponent);
+    fixture = TestBed.createComponent(PageContactComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,25 +1,19 @@
+<section class="content row">
 
+	<div *ngIf="objectSearched" class="content__part">
+		<h3 class="row">{{objectSearched.companyType}} poszukuje</h3>
+		<p class="row">
+			Typ obiektu: {{objectSearched.objectType}}
+		</p>
+		<p class="row">
+			Lokalizacja: {{objectSearched.objectLocation}}
+		</p>
+		<p class="row">
+			Powierzchnia: {{objectSearched.objectAreaMin}} - {{objectSearched.objectAreaMax}} m<sup>2</sup>
+		</p>
+		<p class="row">
+			Cena: {{objectSearched.objectPriceMin}} - {{objectSearched.objectPriceMax}} zł
+		</p>
+	</div>
 
-<ul *ngIf="lastSearched" class="row">
-	<li *ngFor="let objectSearched of lastSearched" class="col-md-6">
-
-		<h3>Szczegóły poszukiwania {{objectSearched.id}}:</h3>
-
-		<section class="row">
-			<aside class="col-sm-3">
-				<i class="fas fa-search-location"></i>
-			</aside>
-			<main class="col-sm-9">
-				<p class="title">
-					<strong>{{objectSearched.companyType}} poszukuje</strong>
-				</p>
-				<p class="details">
-					Typ obiektu: {{objectSearched.objectType}}<br>
-					Lokalizacja: {{objectSearched.objectLocation}}<br>
-					Powierzchnia: {{objectSearched.objectAreaMin}} - {{objectSearched.objectAreaMax}} m<sup>2</sup><br>
-					Cena: {{objectSearched.objectPriceMin}} - {{objectSearched.objectPriceMax}} zł<br>
-				</p>
-			</main>
-		</section>
-	</li>
-</ul>
+</section>

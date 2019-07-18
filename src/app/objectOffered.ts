@@ -1,4 +1,4 @@
-export class objectSearched {
+export class objectOffered {
 	id: number;
 	name: string;
 	owner: number;
@@ -6,9 +6,7 @@ export class objectSearched {
 	transactionType: string;
 	objectType: string;
 	objectLocation: string;
-	objectAreaMin: number;
-	objectAreaMax: number;
-	objectPriceMin: number;
-	objectPriceMax: number;
+	objectArea: number;
+	objectPrice: number;
 	created_at: string;
 }

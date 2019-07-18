@@ -1,0 +1,13 @@
+<section class="content row">
+	<section class="content__part row paginate">
+		<div class="paginate__content row">
+			<div *ngFor="let post of posts" class="col-sm-12 col-md-6">
+				<h2 class="link" routerLink="/wpis/{{post.id}}">{{post.title}}</h2>
+				<p>{{post.created_at | date:'fullDate'}}</p>
+				<p>{{post.content | slice:0:100}}...</p>
+			</div>
+		</div>
+		<pagination-controls class="center paginate__numbers" (pageChange)="p = $event" autoHide="true" previousLabel="Poprzednia" nextLabel="Następna"></pagination-controls>
+
+	</section>
+</section>

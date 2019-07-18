@@ -1,15 +1,89 @@
-<div>
-  <label>Typ działalności:
-    <input [(ngModel)]="lastSearched.companyType" placeholder="name"/>
-  </label>
-</div>
+<section class="content row">
+  <div class="content__part col-sm-7">
+    <h3 class="col-sm-12">Wypełnij poniższe parametry poszukiwania:</h3>
+    
+    <form class="form" [formGroup]="addObjectSearchedForm" (ngSubmit)="onSubmit()" (change)="this.matchedObjectsOffered=this.updateObjectsList(this.objectsOffered)">
 
-	id: number;
-	companyType: string;
-	transactionType: string;
-	objectType: string;
-	objectLocation: string;
-	objectAreaMin: number;
-	objectAreaMax: number;
-	objectPriceMin: number;
-	objectPriceMax: number;
+        <div formGroupName="transactionType" class="col-sm-12 row form__part">
+          <label class="col-sm-12 bold">Rodzaj transakcji:</label>
+        <div class="col-sm-12 row">
+          <label class="col-sm-12 col-md-6">
+              <input type="checkbox" formControlName="sprzedaz" name="sprzedaz" value="sprzedaz">Sprzedaż
+          </label>
+          <label class="col-sm-12 col-md-6">
+              <input type="checkbox" formControlName="wynajem" name="wynajem" value="wynajem">Wynajem
+          </label>
+        </div>
+        </div>
+        <div class="col-sm-12 row form__part">
+        <label class="col-sm-12 bold">Typ działalności:</label>
+        <div class="col-sm-12 row">
+          <input class="input__text col-sm-12" type="text" id="companyType" formControlName="companyType" required placeholder="w jakim celu poszukujesz nieruchomości"/>
+        </div>
+        </div>
+        <div class="col-sm-12 row form__part">
+        <label class="col-sm-12 bold">Rodzaj obiektu:</label>
+        <div class="col-sm-12 row">
+          <input class="input__text col-sm-12" type="text" formControlName="objectType" required placeholder="np. biuro"/>
+        </div>
+        </div>
+        <div class="col-sm-12 row form__part">
+        <label class="col-sm-12 bold">Lokalizacja:</label>
+          <div class="col-sm-12 row">
+            <input class="input__text col-sm-12" type="text" formControlName="objectLocation" required placeholder="np. Warszawa"/>
+          </div>
+        </div>
+        <div class="col-sm-12 row form__part"> 
+        <label class="col-sm-12 bold">Powierzchnia:</label>
+        <div class="col-sm-12 row">
+          <input class="col-sm-5 input__text" type="number" id="objectAreaMin" formControlName="objectAreaMin" required placeholder="od m²"/>
+          <span class="col-sm-2 center">-</span>
+          <input class="col-sm-5 input__text" type="number" formControlName="objectAreaMax" required placeholder="do m²"/>
+        </div>
+        </div>
+        <div class="col-sm-12 row form__part">    
+        <label class="col-sm-12 bold">Cena:</label>
+        <div class="col-sm-12 row">
+          <input class="col-sm-5 input__text" type="number" formControlName="objectPriceMin" required placeholder="od PLN"/>
+          <span class="col-sm-2 center">-</span>
+          <input class="col-sm-5 input__text" type="number" formControlName="objectPriceMax" required placeholder="do PLN"/>
+        </div>
+        </div>
+
+        <div class="col-sm-12 row form__part">    
+          <p *ngIf="addObjectSearchedForm.status=='INVALID'" class="col-sm-12">Wypełnij cały formularz aby dodać poszukiwanie</p>
+          <button class="button col-sm-12" type="submit" [disabled]="!addObjectSearchedForm.valid">Dodaj poszukiwanie</button> 
+        </div>
+
+      
+    </form>
+  </div>
+
+  <div class="content__part col-sm-5">
+    <h3 *ngIf="matchedObjectsOffered==undefined">Zacznij wypełniać formularz aby zobaczyć ile ogłoszeń pasujących do twojego poszukiwania jest w naszej bazie</h3>
+    <h3 *ngIf="matchedObjectsOffered">Pasujące ogłoszenia: {{matchedObjectsOffered.length}}</h3>
+      <ul class="row">
+        <li *ngFor="let objectOffered of matchedObjectsOffered" class="col-sm-12">
+
+          <section class="row link link--nodecor" routerLink="/oferta/{{objectOffered.id}}">
+            <aside class="col-sm-3">
+              <i class="fas fa-search-location"></i>
+            </aside>
+            <main class="col-sm-9">
+              <p class="title">
+                <strong>{{objectOffered.companyType}} poszukuje</strong>
+              </p>
+              <p class="details">
+                Rodzaj transakcji: {{objectOffered.transactionType}}<br>
+                Typ obiektu: {{objectOffered.objectType}}<br>
+                Lokalizacja: {{objectOffered.objectLocation}}<br>
+                Powierzchnia: {{objectOffered.objectArea}} m<sup>2</sup><br>
+                Cena: {{objectOffered.objectPrice}} zł<br>
+              </p>
+            </main>
+          </section>
+        </li>
+      </ul>
+  </div>
+
+</section>
