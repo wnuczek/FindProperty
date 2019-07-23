@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { objectSearched } from '../objectSearched';
 import { objectService } from '../object.service';
+import { AllSearchesComponent } from '../all-searches/all-searches.component'
 
 //dummy data from lastSearched.ts file
 //import { lastSearched } from '../lastSearched'
@@ -14,17 +15,18 @@ export class LastSearchesComponent implements OnInit {
 
   //lastSearched=lastSearched;
 
-  objectsSearched: objectSearched[] = [];
-
+  @Input() objectsSearched: objectSearched[];
+ 
   constructor(private objectService: objectService) { }
 
   ngOnInit() {
+    //this.objectsSearched=AllSearchesComponent.objectsSearched;
   	this.getObjectsSearched();
   }
 
   getObjectsSearched(): void {
     this.objectService.getObjectsSearched()
-      .subscribe(objectSearched => {this.objectsSearched = objectSearched['data'], console.log(objectSearched['data'])});
+      .subscribe(objectSearched => {this.objectsSearched = objectSearched['data']});
   }
 
 }

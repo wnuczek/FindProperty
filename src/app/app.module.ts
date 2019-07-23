@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'; 
 
-import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +20,8 @@ import { PageAboutComponent } from './page-about/page-about.component';
 import { PagePostsComponent } from './page-posts/page-posts.component';
 import { PagePostComponent } from './page-post/page-post.component';
 import { PageHowItWorksComponent } from './page-how-it-works/page-how-it-works.component';
+
+import { AddSearchFormValidationComponent } from './add-search-form-validation/add-search-form-validation.component';
 
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
@@ -43,7 +45,8 @@ registerLocaleData(localePl);
     PageAboutComponent,
     PagePostsComponent,
     PageHowItWorksComponent,
-    PagePostComponent
+    PagePostComponent,
+    AddSearchFormValidationComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,7 @@ registerLocaleData(localePl);
     ReactiveFormsModule
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'pl-pl' },
+    { provide: LOCALE_ID, useValue: 'pl-pl' }
   ],
   bootstrap: [AppComponent]
 })

@@ -10,7 +10,7 @@ import { PostsService } from '../posts.service';
 })
 export class PagePostComponent implements OnInit {
 
-  post=post;
+  post: post;
 
   constructor(private PostsService: PostsService, private route: ActivatedRoute) { }
 

@@ -14,7 +14,7 @@ const httpOptions = {
 })
 export class PostsService {
 
-  private objectsApiURL = 'http://localhost:3000';  // URL to web api
+  private objectsApiURL = 'http://dev.pawelwnuk.pl';  // URL to web api
 
 
   constructor(private http: HttpClient) { }

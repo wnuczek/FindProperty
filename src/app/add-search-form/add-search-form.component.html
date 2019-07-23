@@ -1,8 +1,8 @@
 <section class="content row">
   <div class="content__part col-sm-7">
-    <h3 class="col-sm-12">Wypełnij poniższe parametry poszukiwania:</h3>
+    <h3 class="col-sm-12">Powiedz nam jakiej nieruchomości szukasz:</h3>
 
-    <form class="form" [formGroup]="addObjectSearchedForm" (ngSubmit)="onSubmit()" (change)="this.matchedObjectsOffered=this.updateObjectsList(this.objectsOffered)">
+    <form class="form" autocomplete="off" [formGroup]="addObjectSearchedForm" (ngSubmit)="onSubmit()" (change)="this.matchedObjectsOffered=this.updateObjectsList(this.objectsOffered); checkMaxInput('area'); checkMaxInput('price')">
 
         <div class="col-sm-12 row form__part">
           <label class="col-sm-12 bold">Rodzaj transakcji:</label>
@@ -13,46 +13,63 @@
           <label class="col-sm-12 col-md-6">
               <input type="radio" formControlName="transactionType" name="transactionType" value="wynajem">Wynajem
           </label>
+          <control-messages [control]="addObjectSearchedForm.controls.transactionType" class="col-sm-12"></control-messages>
+        </div>
+        </div>
+        <div class="col-sm-12 row form__part">
+        <label class="col-sm-12 bold">Adres email:</label>
+        <div class="col-sm-12 row">
+          <input class="input__text col-sm-12" type="email" formControlName="email" id="email" required placeholder="na jaki adres chcesz otrzymać oferty?"/>
+          <control-messages [control]="addObjectSearchedForm.controls.email" class="col-sm-12"></control-messages>
         </div>
         </div>
         <div class="col-sm-12 row form__part">
         <label class="col-sm-12 bold">Typ działalności:</label>
         <div class="col-sm-12 row">
-          <input class="input__text col-sm-12" type="text" id="companyType" formControlName="companyType" required placeholder="w jakim celu poszukujesz nieruchomości"/>
+          <input class="input__text col-sm-12" type="text" formControlName="companyType" required placeholder="w jakim celu poszukujesz nieruchomości?"/>
+          <control-messages [control]="addObjectSearchedForm.controls.companyType" class="col-sm-12"></control-messages>
         </div>
         </div>
         <div class="col-sm-12 row form__part">
         <label class="col-sm-12 bold">Rodzaj obiektu:</label>
         <div class="col-sm-12 row">
           <input class="input__text col-sm-12" type="text" formControlName="objectType" required placeholder="np. biuro"/>
+          <control-messages [control]="addObjectSearchedForm.controls.objectType" class="col-sm-12"></control-messages>
         </div>
         </div>
         <div class="col-sm-12 row form__part">
         <label class="col-sm-12 bold">Lokalizacja:</label>
           <div class="col-sm-12 row">
             <input class="input__text col-sm-12" type="text" formControlName="objectLocation" required placeholder="np. Warszawa"/>
+          <control-messages [control]="addObjectSearchedForm.controls.objectLocation" class="col-sm-12"></control-messages>
           </div>
         </div>
         <div class="col-sm-12 row form__part"> 
         <label class="col-sm-12 bold">Powierzchnia:</label>
         <div class="col-sm-12 row">
-          <input class="col-sm-5 input__text" type="number" id="objectAreaMin" formControlName="objectAreaMin" required placeholder="od m²"/>
+          <input class="col-sm-5 input__text" type="number" formControlName="objectAreaMin" placeholder="od m²"/>
           <span class="col-sm-2 center">-</span>
-          <input class="col-sm-5 input__text" type="number" formControlName="objectAreaMax" required placeholder="do m²"/>
+          <input class="col-sm-5 input__text" type="number" (input2)="this.checkMaxInput('area')" formControlName="objectAreaMax" placeholder="do m²"/>
+          <control-messages [control]="addObjectSearchedForm.controls.objectAreaMin" class="col-sm-5"></control-messages>
+          <span class="col-sm-2 center">-</span>
+          <control-messages [control]="addObjectSearchedForm.controls.objectAreaMax" class="col-sm-5"></control-messages>
         </div>
         </div>
-        <div class="col-sm-12 row form__part">    
+        <div class="col-sm-12 row form__part">
         <label class="col-sm-12 bold">Cena:</label>
         <div class="col-sm-12 row">
-          <input class="col-sm-5 input__text" type="number" formControlName="objectPriceMin" required placeholder="od PLN"/>
+          <input class="col-sm-5 input__text" type="number" formControlName="objectPriceMin" placeholder="od PLN"/>
           <span class="col-sm-2 center">-</span>
-          <input class="col-sm-5 input__text" type="number" formControlName="objectPriceMax" required placeholder="do PLN"/>
+          <input class="col-sm-5 input__text" type="number" formControlName="objectPriceMax" placeholder="do PLN"/>
+          <control-messages [control]="addObjectSearchedForm.controls.objectPriceMin" class="col-sm-5"></control-messages>
+          <span class="col-sm-2 center">-</span>
+          <control-messages [control]="addObjectSearchedForm.controls.objectPriceMax" class="col-sm-5"></control-messages>
         </div>
         </div>
 
         <div class="col-sm-12 row form__part">    
-          <p *ngIf="addObjectSearchedForm.status=='INVALID'" class="col-sm-12">Wypełnij cały formularz aby dodać poszukiwanie</p>
-          <button class="button col-sm-12" type="submit" [disabled]="!addObjectSearchedForm.valid">Dodaj poszukiwanie</button> 
+          <button class="button col-sm-12" type="submit" (click)="this.submitTried=true">Dodaj poszukiwanie</button> 
+          <p *ngIf="addObjectSearchedForm.status=='INVALID' && this.submitTried " class="form__error col-sm-12">Wypełnij wszystkie wymagane pola aby dodać poszukiwanie</p>
         </div>
 
       
@@ -77,8 +94,8 @@
                 Rodzaj transakcji: {{objectOffered.transactionType}}<br>
                 Typ obiektu: {{objectOffered.objectType}}<br>
                 Lokalizacja: {{objectOffered.objectLocation}}<br>
-                Powierzchnia: {{objectOffered.objectArea}} m<sup>2</sup><br>
-                Cena: {{objectOffered.objectPrice}} zł<br>
+                Powierzchnia: {{objectOffered.objectArea | number:'':'pl-pl'}} m²<br>
+                Cena: {{objectOffered.objectPrice | number:'':'pl-pl'}} zł<br>
               </p>
             </main>
           </section>

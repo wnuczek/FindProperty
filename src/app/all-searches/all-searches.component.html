@@ -1,9 +1,9 @@
 <section class="content row">
 	<div class="content__part paginate">
 		<div class="paginate__content row">
-			<h3>Wszystkie poszukiwania:</h3>
+			<h3 class="col-sm-12">Wszystkie poszukiwania:</h3>
 
-			<ul class="row">
+			<ul class="col-sm-12 row">
 				<li *ngFor="let objectSearched of objectsSearched | paginate: { itemsPerPage: 8, currentPage: p }" class="col-md-6">
 
 					<section class="row link link--nodecor" routerLink="/oferta/{{objectSearched.id}}">
@@ -17,8 +17,8 @@
 							<p class="details">
 								Typ obiektu: {{objectSearched.objectType}}<br>
 								Lokalizacja: {{objectSearched.objectLocation}}<br>
-								Powierzchnia: {{objectSearched.objectAreaMin}} - {{objectSearched.objectAreaMax}} m<sup>2</sup><br>
-								Cena: {{objectSearched.objectPriceMin}} - {{objectSearched.objectPriceMax}} zł<br>
+								Powierzchnia: {{objectSearched.objectAreaMin | number:'':'pl-pl'}} - {{objectSearched.objectAreaMax | number:'':'pl-pl'}} m<sup>2</sup><br>
+								Cena: {{objectSearched.objectPriceMin | number:'':'pl-pl'}} - {{objectSearched.objectPriceMax | number:'':'pl-pl'}} zł<br>
 							</p>
 						</main>
 					</section>
