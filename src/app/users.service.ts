@@ -14,7 +14,7 @@ const httpOptions = {
 })
 export class UsersService {
 
-  private objectsApiURL = 'http://dev.pawelwnuk.pl';  // URL to web api
+  private objectsApiURL = 'https://dev.pawelwnuk.pl';  // URL to web api
 
 
   constructor(private http: HttpClient) { }
